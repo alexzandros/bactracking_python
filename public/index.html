@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_highlighter.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>To backtrack or not to backtrack </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.2 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_highlighter.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+<body class="exe-web-site" id="exe-node-0"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<section id="emptyHeader"></section>
+<nav id="siteNav">
+<ul>
+   <li id="active"><a href="index.html" class="active no-ch main-node">To backtrack or not to backtrack</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">To backtrack or not to backtrack</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id0">
+<div class="iDevice emphasis0">
+<div id="ta0_85" class="block iDevice_content">
+<div class="_2cuy _3dgx" data-block="true" data-editor="8ucb1" data-offset-key="erjvb-0-0">
+<div data-offset-key="erjvb-0-0" class="_1mf _1mj" style="text-align: justify;"><span data-offset-key="erjvb-0-0">El mundo de la programación está lleno de términos técnicos que parecen supremamente elaborados o más allá del alcance de una persona común, sin embargo gran parte de su “misterio” radica en que a nosotros los hispanohablantes los términos en inglés nos suenan míticos y legendarios, pero realmente son muchos más sencillos de lo que nos imaginamos..</span></div>
+<div data-offset-key="erjvb-0-0" class="_1mf _1mj"><br style="clear: both;" /><br /><span data-offset-key="erjvb-0-0"></span></div>
+</div>
+<div class="_2cuy _3dgx" data-block="true" data-editor="8ucb1" data-offset-key="3fc79-0-0">
+<div data-offset-key="3fc79-0-0" class="_1mf _1mj" style="text-align: justify;"><span data-offset-key="3fc79-0-0">El primer término que vamos a desmitificar es el de </span><span data-offset-key="3fc79-0-1">backtracking</span><span data-offset-key="3fc79-0-2">, uno de los pilares de algoritmos de inteligencia artificial. </span><span data-offset-key="3fc79-0-3">Backtracking</span><span data-offset-key="3fc79-0-4">, técnica aplicada a los problemas en los que pueden encontrarse soluciones “parciales” que pueden o no conducir a la solución final buscada; y se refiere a la capacidad que tiene un programa de computador de realizar “backtrack” que no es otra cosa que devolverse al sitio donde tomó la última decisión (encontró una solución parcial) y probar una opción diferente a la probada cuando encuentra que esta no conduce a la solución final del problema. Puede visualizarse como una persona recorriendo un laberinto, y dejando una marca del último punto donde tomó una bifurcación con el fin de devolverse a ella y probar un camino diferente hasta encontrar la salida, cosa que por cierto es uno de los algoritmos típicos de backtracking.</span></div>
+<div data-offset-key="3fc79-0-0" class="_1mf _1mj"><span data-offset-key="3fc79-0-4"></span></div>
+<div data-offset-key="3fc79-0-0" class="_1mf _1mj"><span data-offset-key="3fc79-0-4"> </span></div>
+</div>
+<div class="_2cuy _3dgx" data-block="true" data-editor="8ucb1" data-offset-key="o0js-0-0">
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;"><span data-offset-key="o0js-0-0">Vamos a ilustrarlo con un ejercicio típico de programación que es el problema de las 8 reinas de ajedrez, que consiste en encontrar la forma de colocar 8 damas en un tablero tradicional de ajedrez de 8x8 casillas sin que ninguna de dichas piezas este siendo atacada ni atacando a ninguna otra, por ejemplo:</span></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj"><span data-offset-key="o0js-0-0"></span><br style="clear: both;" /><br /></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: center;"><span data-offset-key="o0js-0-0"><img src="ocho_damas_en_un_tablero.PNG" width="322" height="320" style="vertical-align: baseline;" alt="ocho damas" /></span></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: center;"><span data-offset-key="o0js-0-0"></span></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;">
+<div class="highlighted-code language-python line-numbers">
+<div>
+<pre><code>from copy import deepcopy
+
+def damas(numero, tablero, actual):
+    x,y = actual
+    nuevoTablero = deepcopy(tablero)
+    nuevoTablero[x][y] = "X"
+    sumIndices = x + y
+    difIndices = x - y
+    for i in range (8):
+        if (nuevoTablero[i][y] == "_"):
+            nuevoTablero[i][y] = "Y"
+        if (nuevoTablero[x][i] == "_"):
+            nuevoTablero[x][i] = "Y"
+        j = sumIndices - i
+        if (j &gt;=0 and j &lt;= 7 and nuevoTablero[i][j] == "_"):
+            nuevoTablero[i][j] = "Y"
+        j = i - difIndices
+        if (j &gt;=0 and j &lt;= 7 and nuevoTablero[i][j] == "_"):
+            nuevoTablero[i][j] = "Y"
+    for fila in nuevoTablero:
+        print(fila)
+    print(actual, numero)
+    if (numero == 8):
+        print ("Exito")
+        return True
+    else:
+        for i in range(8):
+            for j in range(8):
+                if (nuevoTablero[i][j] == "_"):
+                    if (damas(numero+1, nuevoTablero, (i,j))):
+                        return True
+        return False</code></pre>
+</div>
+</div>
+<span data-offset-key="o0js-0-0">En el código anterior, vemos la implementación en Python de un algoritmo con backtracking que busca solucionar el problema de las 8 damas, en primer lugar determina las coordenadas donde intentará ubicar la siguiente dama (línea 4) y luego  crea una copia del estado actual del tablero (línea 5). Esta copia es una arreglo de 8x8  con las siguientes convenciones, si én una posición determinada existe una dama, esta se marcará con la letra "X", la letra "Y" denotará las casillas que son atacadas por alguna dama existente en el tablero y un guión bajo "_" denotará casillas donde no hay dama ni están siendo controladas por alguna de las ya presentes.<br style="clear: both;" /></span></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;"><br style="clear: both;" />Las líneas 6-19 se encargan de actualizar el estado del tablero en la variable nuevoTablero, mientras las líneas 20 a 22 imprimen en consola dicho nuevo estado, junto con las coordenadas de la última dama colocada y el número de damas que se han podido colocar.</div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;"><br style="clear: both;" />El if de la línea 23 comprueba si ha podido colocar las 8 damas, en caso afirmativo termina el proceso imprimiendo éxito y retorna true. La rama else correspondiente a ese if da comienzo al backtracking en nuestro algoritmo haciendo uso de una estrategia de "fuerza bruta"; comienza a recorrer todo el arreglo, celda por celda hasta encontrar una casilla en la que no haya ninguna dama ni esté controlada por una, una vez la encuentra se invoca nuevamente a la función damas, incrementando el contador de damas, con el estado actual del tablero y la coordenada (i, j) de la nueva dama a colocar, si dicha invocación logra colocar exitosamente esta nueva dama y las subsiguientes retornará true; en caso contrario (y este es el backtracking) seguirá iterando hasta encontrar una nueva casilla vacía y sin estar atacada por ninguna dama para intentar colocar allí la dama. Si llega al final del arreglo sin haber podido colocar la dama retornará False, como se ve en la línea 32, notificando a la instancia que la haya invocado que le fue imposible colocar la dama en las coordenada recibidas y seguir colocando las damas faltantes hasta completar las 8 pedidas, haciendo de esta forma que la instancia anterior de la función pruebe otra casilla para colocar la dama.</div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;"><br style="clear: both;" />Vamos a correr el algoritmo unas cuantas veces para realizar pruebas, primero debemos inicializar el tablero y dar inicio a la ejecución recursiva, en este caso indicaremos que nuestra casilla inicial será la (0,0).</div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;"></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;">
+<div class="highlighted-code language-python">
+<div>
+<pre><code>tablero = [ ["_" for x in range (8)] for y in range(8)]
+damas(1, tablero , (0,0))
+</code></pre>
+</div>
+</div>
+A continuación correremos el script Python y tomaremos su tiempo:</div>
+<div class="highlighted-code language-aspnet">
+<div>
+<pre><code> Measure-Command {python.exe .\damas.py | Out-Default}</code></pre>
+</div>
+</div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: center;"></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj"><img src="img1.png" width="333" height="214" alt="tiempo ejecucion damas" style="display: block; margin-left: auto; margin-right: auto;" /></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj"></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj">Comentemos ahora todas las líneas con comando print, a excepción de aquella que dice "Éxito", y ahí mismo imprimamos una única vez el estado del tablero y volvamos a tomar el tiempo de ejecución de la función.</div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: center;">
+<div class="highlighted-code language-python">
+<div>
+<pre><code>#for fila in nuevoTablero:
+     #   print(fila)
+    #print(actual, numero)
+    if (numero == 8):
+        print ("Exito")
+        for fila in nuevoTablero:
+            print (fila)
+        return True</code></pre>
+</div>
+</div>
+<img src="img2.png" width="480" height="311" alt="damas sin imprimir todos los estados" /></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: center;"></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;">Observamos que el tiempo de ejecución se ha reducido de más de 44 segundos a apenas dos, simplemente evitando que imprimiera en pantalla todos los estados intermedios, esto es algo para tener en cuenta.</div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;"></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;">Finalmente vamos a crear una variable global (en la realidad nunca deberíamos, es una muy mala práctica de programación) con la única intención de determinar cuantas veces se llamó a la función recursiva damas:</div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;"></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: center;"><img src="img3.png" width="480" height="312" alt="contando número de veces." /></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;"></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj" style="text-align: justify;">Un total de 25943 iteraciones. En una próxima entrega reemplazaremos nuestra estrategia de fuerza bruta, por una estrategia haciendo uso de una cola prioritaria para determinar cuántas iteraciones menos logramos.</div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj"></div>
+<div data-offset-key="o0js-0-0" class="_1mf _1mj"></div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_style_js.js"></script></body></html>
